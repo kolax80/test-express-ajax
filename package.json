@@ -1,0 +1,25 @@
+{
+  "name": "test-node",
+  "version": "1.0.0",
+  "description": "description-testing node",
+  "main": "index.js",
+  "dependencies": {
+    "body-parser": "^1.18.2",
+    "ejs": "^2.5.7",
+    "ejs-locals": "^1.0.2",
+    "express": "^4.16.2",
+    "express-handlebars": "^3.0.0",
+    "handlebars": "^4.0.11",
+    "ladash": "^1.2.0",
+    "mongodb": "^3.0.1"
+  },
+  "devDependencies": {
+    "mocha": "^5.0.0"
+  },
+  "scripts": {
+    "start": "node index.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "kolax",
+  "license": "ISC"
+}

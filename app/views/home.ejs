@@ -1,0 +1,63 @@
+
+<% layout('layouts/main') %>
+
+<h2><%=text%></h2>
+<% if( typeof name != 'undefined'){ %>
+<h3>Hello <%=name%></h3>
+<% } %>
+<!-- или можно так проверить -->
+<% if( typeof time != 'undefined'){ %>
+<h3>Дата: <%=time%></h3>
+<% } %>
+
+<div class="list-art" >
+    <% if(typeof items != 'undefined'){ %>
+      <ul>
+        <% for(var i=0; i < items.length; i++ ){ %>
+          <li>№ <%=items[i].id%> - <%=items[i].name %></li>
+        <% } %>
+      </ul>
+    <% } %>
+</div>
+<h1>Введите данные</h1>
+    <form  method="post">
+        <label>Имя</label><br>
+        <input class="name" type="text" name="userName" /><br><br>
+        <label>Возраст</label><br>
+        <input class="age" type="text" name="userAge" /><br><br>
+        <span><% if(typeof mess != 'undefined'){ %><%=mess%><% } %></span>
+        <input class="btn" type="button" value="Отправить" />
+    </form>
+
+<script>
+    $(".btn").on('click',function () {
+                var userName = $('.name').val();
+                var userAge = $('.age').val();
+                // alert(userName);
+                $.ajax({
+                  url: "/",
+                  method: "POST",
+                  data: JSON.stringify({
+                      userName:userName,
+                      userAge:userAge
+                  }),
+                  dataType: "json",
+                  contentType: "application/json",
+                  success: function (data) {
+                    if (data){
+                    //  alert(data[0].id);
+                      var list = "";
+                      for(var j=0; j < data.length; j++) {
+                        list += ('<li>№ ' + data[j].id +'-' + data[j].name + '</li>');
+                      }
+                      $('.list-art').html('<ul>'+list+'</ul>');
+                    } else {
+                      alert(data.mess);
+                    }
+                  }
+              });
+
+            });
+
+
+</script>

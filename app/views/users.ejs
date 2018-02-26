@@ -1,0 +1,8 @@
+<h1>Список юзеров из коллекции users базы mymongo (test для mongodb)</h1>
+<% if(locals.users){ %>
+  <ul>
+    <% for(var i=0; i < users.length; i++ ){ %>
+      <li>айдишник <%=users[i]._id%> - <%=users[i].name %></li>
+    <% } %>
+  </ul>
+<% } %>
